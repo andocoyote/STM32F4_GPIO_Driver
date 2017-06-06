@@ -1,0 +1,1 @@
+This is a project for the Udemy class "Mastering Microcontroller with Peripheral Driver Development" using the STM32F407VGT6 board.

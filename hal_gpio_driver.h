@@ -24,9 +24,9 @@
 #define GPIO_PIN_SPEED_VERY_HIGH        ( (uint32_t)0x03 )
 
 // GPIO pull up/pull down selection values
-#define GPIO_PIN_NO_PULL_PUSH           ( (uint32_t)0x00 )
+#define GPIO_PIN_NO_PULL                ( (uint32_t)0x00 )
 #define GPIO_PIN_PULL_UP                ( (uint32_t)0x01 )
-#define GPIO_PIN_PULL_DOWN              ( (uint32_t)0x11 )
+#define GPIO_PIN_PULL_DOWN              ( (uint32_t)0x02 )
 
 // GPIO port address definitions
 #define GPIO_PORT_A                     GPIOA

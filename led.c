@@ -64,6 +64,15 @@ int main(void)
     // Initialize the LEDs
     led_init();
     
+    // Enable the clock for the GPOIA port
+    _HAL_RCC_GPIOA_CLK_ENABLE();
+    
+    // Configure the button interrupt as falling edge
+    hal_gpio_configure_interrupt(GPIO_BUTTON_PIN, INT_FALLING_EDGE);
+    
+    // Enable the interrupt on EXTI0 line
+    hal_gpio_enable_interrupt(GPIO_BUTTON_PIN, EXTI0_IRQn /*IRQ 6*/);
+    
     while(1)
     {
         led_turn_on(GPIO_PORT_D, LED_ORANGE);
@@ -76,4 +85,18 @@ int main(void)
         
         for(i = 0; i < 500000; i++);
     }
+}
+
+// ISR for the configured EXTI0 interrupt
+void EXTI0_IRQHandler(void)
+{
+    // Clear the interrupt so it doesn't fire again
+    // Else, it would keep firing and this handler would keep getting called
+    hal_gpio_clear_interrupt(GPIO_BUTTON_PIN);
+    
+    // Execute the ISR work
+    led_toggle(GPIOD, LED_BLUE);
+    led_toggle(GPIOD, LED_ORANGE);
+    led_toggle(GPIOD, LED_RED);
+    led_toggle(GPIOD, LED_GREEN);
 }

@@ -102,4 +102,18 @@ void hal_gpio_write_to_pin(GPIO_TypeDef* GPIOx, uint16_t pin_no, uint8_t value);
 //  alt_func_value: altertate function value for which to configure the pin
 void hal_gpio_set_alt_function(GPIO_TypeDef* GPIOx, uint16_t pin_no, uint16_t alt_func_value);
 
+// Configure the interrupt for a given pin number
+//  pin_no: GPIO pin number 
+//  edge_sel: Triggering edge selection value of type "int_edge_sel_t" (rising edge, falling edge, both)
+void hal_gpio_configure_interrupt(uint16_t pin_no, int_edge_sel_t edge_sel);
+    
+// Enable the interrupt for a given pin number
+//  pin_no: GPIO pin number 
+//  irq_no: IRQ_NUMBER to be enabled in NVIC
+void hal_gpio_enable_interrupt(uint16_t pin_no, IRQn_Type irq_no);
+
+// Clear the interrupt for a given pin number (else, the processor will keep being interrupted)
+//  pin_no: GPIO pin number 
+void hal_gpio_clear_interrupt(uint16_t pin_no);
+
 #endif
